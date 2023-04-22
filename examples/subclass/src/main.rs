@@ -11,6 +11,7 @@
 mod billy;
 mod uwu;
 
+use std::pin::Pin;
 use autocxx::prelude::*;
 use autocxx::subclass::prelude::*;
 use cxx::CxxString;
@@ -20,6 +21,7 @@ use std::rc::Rc;
 include_cpp! {
     #include "messages.h"
     safety!(unsafe) // unsafety policy; see docs
+    generate_pod!("MyPod")
 }
 
 // Here's the definition of MessageDisplayer from src/messages.h:
@@ -42,6 +44,10 @@ impl ffi::MessageDisplayer_methods for UwuDisplayer {
     fn display_message(&self, msg: &CxxString) {
         let uwu = uwu::uwu(msg.to_str().unwrap());
         println!("{}", uwu);
+    }
+
+    fn do_something_pod(&self, pod: Pin<&mut ffi::MyPod>) {
+        println!("{}", pod.foo);
     }
 }
 
@@ -124,6 +130,10 @@ impl ffi::MessageDisplayer_methods for BoxDisplayer {
             println!("# {:^70} #", l);
         }
         println!("{}", horz_line);
+    }
+
+    fn do_something_pod(&self, pod: Pin<&mut ffi::MyPod>) {
+        println!("{}", pod.foo);
     }
 }
 

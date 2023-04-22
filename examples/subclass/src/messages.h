@@ -12,6 +12,16 @@
 #pragma once
 
 #include <string>
+#include <cxx.h>
+
+class MyPod {
+public:
+    int foo;
+    char* bar;
+    // uncomment me to cause bug!
+    // rust::Slice<rust::Slice<float>> data;
+    // float** data2;
+};
 
 class MessageProducer {
 public:
@@ -22,6 +32,7 @@ public:
 class MessageDisplayer {
 public:
     virtual void display_message(const std::string& message) const = 0;
+    virtual void do_something_pod(MyPod& pod) const = 0;
     virtual ~MessageDisplayer() {};
 };
 

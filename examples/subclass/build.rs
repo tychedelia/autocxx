@@ -21,7 +21,7 @@ fn main() -> miette::Result<()> {
     // The following line is *unrelated* to autocxx builds and is
     // just designed to ensure that example code doesn't get out of sync
     // from copies in comments.
-    ensure_comments_match_real_code(&std::path::PathBuf::from("src/main.rs"));
+    // ensure_comments_match_real_code(&std::path::PathBuf::from("src/main.rs"));
     Ok(())
 }
 

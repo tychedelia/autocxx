@@ -15,7 +15,7 @@
 #include <sstream>
 #include <vector>
 #include <functional>
- 
+
 class CppExampleProducer : public MessageProducer {
 public:
     CppExampleProducer() {}
@@ -33,6 +33,10 @@ public:
     CppExampleDisplayer() {}
     void display_message(const std::string& msg) const {
         std::cout << "Message: " << msg << std::endl;
+    }
+
+    void do_something_pod(MyPod &pod) const {
+
     }
 };
 
