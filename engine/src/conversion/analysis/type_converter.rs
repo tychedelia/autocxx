@@ -512,7 +512,7 @@ impl<'a> TypeConverter<'a> {
         match *ptr.elem {
             Type::Path(..) => Ok(()),
             Type::Array(..) => Err(ConvertErrorFromCpp::InvalidArrayPointee),
-            Type::Ptr(..) => Err(ConvertErrorFromCpp::InvalidPointerPointee),
+            Type::Ptr(..) => Ok(()),
             _ => Err(ConvertErrorFromCpp::InvalidPointee(
                 ptr.elem.to_token_stream().to_string(),
             )),

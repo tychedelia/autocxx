@@ -36,7 +36,7 @@ public:
     }
 
     void do_something_pod(MyPod &pod) const {
-
+        std::cout << "From C++: " << pod.data[0][0] << std::endl;
     }
 };
 
@@ -66,6 +66,12 @@ void run_demo() {
         auto msg = producer.get().get_message();
         for (auto& displayer: displayers) {
             displayer.get().display_message(msg);
+            MyPod pod;
+            pod.foo = 1;
+            pod.data = new float*[1];
+            pod.data[0] = new float[1];
+            pod.data[0][0] = 101.0;
+            displayer.get().do_something_pod(pod);
             std::cout << std::endl;
         }
         std::cout << std::endl;

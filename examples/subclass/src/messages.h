@@ -17,10 +17,7 @@
 class MyPod {
 public:
     int foo;
-    char* bar;
-    // uncomment me to cause bug!
-    // rust::Slice<rust::Slice<float>> data;
-    // float** data2;
+    float** data;
 };
 
 class MessageProducer {

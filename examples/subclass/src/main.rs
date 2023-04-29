@@ -47,7 +47,7 @@ impl ffi::MessageDisplayer_methods for UwuDisplayer {
     }
 
     fn do_something_pod(&self, pod: Pin<&mut ffi::MyPod>) {
-        println!("{}", pod.foo);
+        unsafe { println!("From Rust: {:?}", **pod.data); }
     }
 }
 
@@ -133,7 +133,6 @@ impl ffi::MessageDisplayer_methods for BoxDisplayer {
     }
 
     fn do_something_pod(&self, pod: Pin<&mut ffi::MyPod>) {
-        println!("{}", pod.foo);
     }
 }
 
